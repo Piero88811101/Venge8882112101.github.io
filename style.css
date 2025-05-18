@@ -1,0 +1,204 @@
+body {
+    background-color: #0a0a1f; /* Very dark deep blue */
+    color: #e0e0e0;
+    font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Futuristic font */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; /* Global neon glow for text */
+}
+
+#game-title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#game-title h1 {
+    font-size: 3em;
+    color: #00ffff; /* Neon Cyan */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+#game-title .arena-text {
+    color: #ff00ff; /* Neon Magenta */
+    animation: pulseGlowMagenta 2s infinite alternate 0.5s;
+}
+
+@keyframes pulseGlow {
+    from { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; }
+    to { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00aaff; }
+}
+@keyframes pulseGlowMagenta {
+    from { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; }
+    to { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00aa; }
+}
+
+
+#game-wrapper {
+    position: relative;
+    text-align: center; /* To center inline-block children */
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff inset;
+    background: #0f0f24; /* Darker than body, but still blueish */
+    margin-bottom: 25px;
+    overflow: hidden; /* Ensure canvas effects don't bleed */
+    display: inline-block; /* Allow centering by text-align on parent */
+    text-align: left; /* Reset text-align for contents */
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+#ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#player-stats {
+    background-color: rgba(0, 30, 60, 0.7);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #00aaff;
+    box-shadow: 0 0 10px #00aaff inset;
+}
+
+#player-stats span {
+    margin-right: 20px;
+    font-size: 1.2em;
+    color: #00ffff;
+    font-weight: bold;
+}
+#player-stats span:last-child {
+    margin-right: 0;
+}
+
+#zone-timer-container {
+    background-color: rgba(30, 0, 30, 0.7);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ff00ff;
+    box-shadow: 0 0 10px #ff00ff inset;
+    font-size: 1.1em;
+    color: #ff00ff;
+    font-weight: bold;
+}
+
+
+#message-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(10, 10, 30, 0.9);
+    color: #ffffff;
+    padding: 25px 40px;
+    border-radius: 10px;
+    font-size: 2em;
+    text-align: center;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+    z-index: 20;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#message-display.hidden {
+    display: none;
+}
+
+#facebook-login-redirect-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25;
+
+    background-color: #1877F2; /* Facebook Blue */
+    color: white;
+    border: none;
+    padding: 18px 30px; 
+    font-size: 1.6em; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    text-shadow: none; 
+    box-shadow: 0 0 10px #1877F2, 0 0 20px #1877F2; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#facebook-login-redirect-button:hover {
+    background-color: #166FE5;
+    box-shadow: 0 0 15px #1877F2, 0 0 30px #1877F2, 0 0 5px #ffffff inset;
+}
+
+#facebook-login-redirect-button .facebook-icon { 
+    width: 24px; 
+    height: 24px;
+    fill: white;
+    margin-right: 12px;
+}
+
+#play-game-button {
+    display: inline-block; /* Centered by game-wrapper's text-align */
+    margin-top: 15px; /* Space below game container */
+    margin-bottom: 15px; /* Space below button */
+    padding: 10px 25px;
+    font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #e0e0e0;
+    background-color: #007777; /* Darker, distinct cyan */
+    border: 2px solid #00dddd; /* Brighter cyan border */
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff;
+    box-shadow: 0 0 8px #00dddd, 0 0 12px #00dddd inset;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+#play-game-button:hover {
+    background-color: #009999; /* Lighter cyan on hover */
+    color: #ffffff;
+    box-shadow: 0 0 12px #00ffff, 0 0 18px #00ffff inset, 0 0 5px #ffffff;
+}
+
+
+.neon-glow-cyan {
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+}
+.neon-glow-magenta {
+    box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+}

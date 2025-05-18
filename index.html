@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Shard Arena</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.158.0/build/three.module.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header id="game-title">
+        <h1>Neon Shard <span class="arena-text">Arena</span></h1>
+    </header>
+    <div id="game-wrapper">
+        <div id="game-container">
+            <canvas id="gameCanvas"></canvas>
+            <div id="ui-overlay">
+                <div id="player-stats">
+                    <span>HP: <span id="health-value">100</span></span>
+                    <span>Shards: <span id="enemies-left-value">0</span></span>
+                </div>
+                <div id="zone-timer-container">
+                    Safe Zone Shrinks In: <span id="zone-timer">--:--</span>
+                </div>
+            </div>
+            <div id="message-display" class="hidden"></div>
+            <button id="facebook-login-redirect-button">
+                <!-- Content set by JS -->
+            </button>
+        </div>
+        <button id="play-game-button">Play Game</button>
+    </div>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
